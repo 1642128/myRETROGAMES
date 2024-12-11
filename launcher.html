@@ -4,19 +4,6 @@
         <link rel="shortcut icon" href="Binaries/gb.ico">
         <title>GBA Emulator</title>
         <meta charset="UTF-8">
-            <script>
-               document.addEventListener('keydown', (event) => {
-               keysPressed[event.key] = true;
-
-                   if (keysPressed['Control'] && event.key == 'v') {
-                       ExportSave();
-                   }
-                });
-
-                document.addEventListener('keyup', (event) => {
-                    delete keysPressed[event.key];
-                });
-            </script>
             <!--Required Scripts-->
             <script src="IodineGBA/includes/TypedArrayShim.js"></script>
             <script src="IodineGBA/core/Cartridge.js"></script>
@@ -72,6 +59,19 @@
             <script src="user_scripts/IodineGBACoreGlueCode.js"></script>
             <script src="user_scripts/base64.js"></script>
             <link rel="stylesheet" href="user_css/main.css">
+            <script>
+               document.addEventListener('keydown', (event) => {
+               keysPressed[event.key] = true;
+
+                   if (keysPressed['Control'] && event.key == 'v') {
+                       GameBoyAdvanceSaves.prototype.exportSave();
+                   }
+                });
+
+                document.addEventListener('keyup', (event) => {
+                    delete keysPressed[event.key];
+                });
+            </script>
     </head>
     <body>
         <canvas id="emulator_target" width="240px" height="160px"></canvas>
