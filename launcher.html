@@ -4,6 +4,19 @@
         <link rel="shortcut icon" href="Binaries/gb.ico">
         <title>GBA Emulator</title>
         <meta charset="UTF-8">
+            <script>
+                document.addEventListener('keydown', (event) => {
+               keysPressed[event.key] = true;
+
+                   if (keysPressed['Control'] && event.key == 's') {
+                       ExportSave();
+                   }
+                });
+
+                document.addEventListener('keyup', (event) => {
+                    delete keysPressed[event.key];
+                });
+            </script>
             <!--Required Scripts-->
             <script src="IodineGBA/includes/TypedArrayShim.js"></script>
             <script src="IodineGBA/core/Cartridge.js"></script>
@@ -61,7 +74,7 @@
             <link rel="stylesheet" href="user_css/main.css">
     </head>
     <body>
-        <button onclick=ExportSave()>Save</button>
+        <ExportSave()>Save</button>
         <canvas id="emulator_target" width="240px" height="160px"></canvas>
         <span id="tempMessage"></span>
     </body>
